@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.47, y: -3.3, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -48,6 +48,9 @@ MonoBehaviour:
   statsSO: {fileID: 11400000, guid: 6d0b79226c9e1e94c9126bc9f29adc43, type: 2}
   isPlayer: 0
   isEnemy: 1
+  spriteRenderer: {fileID: 5171307084736973717}
+  hitColor: {r: 0.2735849, g: 0.14848621, b: 0, a: 1}
+  hitFlashDuration: 0.15
 --- !u!212 &5171307084736973717
 SpriteRenderer:
   m_ObjectHideFlags: 0

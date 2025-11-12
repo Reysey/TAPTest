@@ -25,6 +25,9 @@ namespace Game
         private Color _originalColor;
         private Coroutine _flashCoroutine;
         
+        private bool _isDead;
+       
+        
         private void Awake()
         {
             
@@ -49,6 +52,8 @@ namespace Game
 
         public void TakeDamage(int rawDamage)
         {
+            if (_isDead) return;
+            
             int damage = Mathf.Max(0, rawDamage - Defense);
             if (damage <= 0) return;
 
@@ -59,6 +64,7 @@ namespace Game
             if (isPlayer)
             {
                 GameEvents.RaisePlayerHpChanged(CurrentHp, MaxHp);
+                if (CurrentHp <= 0) Die();
             }
             else if (isEnemy)
             {
@@ -69,8 +75,16 @@ namespace Game
                 if (CurrentHp <= 0)
                 {
                     GameEvents.RaiseEnemyDefeated();
+                    Die();
                 }
             }
+        }
+        
+        private void Die()
+        {
+            if (_isDead) return;
+            _isDead = true;
+            Destroy(gameObject); // instant removal
         }
         
         private void TriggerHitFlash()

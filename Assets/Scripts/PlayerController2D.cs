@@ -16,6 +16,10 @@ public class PlayerController2D : MonoBehaviour
     private Rigidbody2D _rb;
     private Vector2 _moveInput;
     private Vector2 _lastMoveDir = Vector2.down;
+    
+    [Header("FX 2D")]
+    [SerializeField] private ParticleSystem attackFx;
+    [SerializeField] private float attackFxOffset = 0.5f; 
 
     private void Awake()
     {
@@ -59,7 +63,7 @@ public class PlayerController2D : MonoBehaviour
 
         if (heroStats == null || enemyStats == null)
         {
-            Debug.LogWarning("Attack pressed but stats refs not set.");
+            // Debug.LogWarning("Attack pressed but stats refs not set.");
             return;
         }
 
@@ -70,7 +74,17 @@ public class PlayerController2D : MonoBehaviour
             Debug.Log("Enemy out of range.");
             return;
         }
-
+        
+        // Determine facing; if never moved, default down
+        Vector2 dir = _lastMoveDir.sqrMagnitude > 0.0001f ? _lastMoveDir.normalized : Vector2.down;
+        
+        // Play attack animation
+        if (attackFx != null)
+        {
+            attackFx.transform.position = transform.position + (Vector3)(dir * attackFxOffset);
+            attackFx.Play();
+        }
+        
         // Deal damage
         enemyStats.TakeDamage(heroStats.Attack);
 

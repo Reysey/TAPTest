@@ -11,6 +11,10 @@ namespace UI
         [SerializeField] private TMP_Text playerHpText;
         [SerializeField] private TMP_Text enemyHpText;
 
+        [Header("Health Bars")]
+        [SerializeField] private Image playerHpFill;
+        [SerializeField] private Image enemyHpFill;
+        
         private void OnEnable()
         {
             GameEvents.OnPlayerHpChanged += HandlePlayerHpChanged;
@@ -29,12 +33,18 @@ namespace UI
         {
             if (playerHpText != null)
                 playerHpText.text = $"Player HP: {current}/{max}";
+            
+            if (playerHpFill != null)
+                playerHpFill.fillAmount = (max > 0) ? (float)current / max : 0f;
         }
 
         private void HandleEnemyHpChanged(int current, int max)
         {
             if (enemyHpText != null)
                 enemyHpText.text = $"Enemy HP: {current}/{max}";
+            
+            if (enemyHpFill != null)
+                enemyHpFill.fillAmount = (max > 0) ? (float)current / max : 0f;
         }
 
         private void HandleEnemyDefeated()
