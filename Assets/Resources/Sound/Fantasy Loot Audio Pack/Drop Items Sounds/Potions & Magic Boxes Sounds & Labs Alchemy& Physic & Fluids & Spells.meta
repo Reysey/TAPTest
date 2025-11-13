@@ -1,0 +1,28 @@
+fileFormatVersion: 2
+guid: f5d05d9413a16714a9ee3839788c6c4c
+labels:
+- fantasy
+- loot
+- audio
+- pack
+- potions
+- alchemy
+- sound
+- effects
+- drop
+- pickup
+- items
+- craft
+- voices
+- leitmotiv
+- amulets
+- mana
+- weapons
+- phrases
+folderAsset: yes
+timeCreated: 1453918138
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
