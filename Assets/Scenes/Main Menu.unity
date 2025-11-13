@@ -389,10 +389,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 282250738}
-  - component: {fileID: 282250740}
   - component: {fileID: 282250739}
+  - component: {fileID: 282250740}
+  - component: {fileID: 282250741}
   m_Layer: 5
-  m_Name: Sound
+  m_Name: SoundPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -439,18 +440,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 282250737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e4cbfd354be02140b84fb02b85eaf1e, type: 3}
+  m_Script: {fileID: 11500000, guid: a32819469f9ecd64ebe70b20878e1e7f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Sound::VolumeSetting
-  mixer: {fileID: 24100000, guid: f4f0772ac4abbc447afdc72361e5ad1d, type: 2}
-  masterParam: MasterVolume
-  sfxParam: SFXVolume
-  musicParam: MusicVolume
+  m_EditorClassIdentifier: UI::UI.VolumePanelController
   panel: {fileID: 282250739}
   startHidden: 1
   masterSlider: {fileID: 2095207401}
   sfxSlider: {fileID: 1604104555}
   musicSlider: {fileID: 1617172075}
+--- !u!114 &282250741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282250737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b8ce7855f044b64592b202a84b27611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UI::MainMenuMusicStarter
+  mainMenuMusic: {fileID: 8300000, guid: 65a651862abd2ae4784de736cfc999c9, type: 3}
+  fadeSeconds: 5
 --- !u!1 &354927701
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,8 +2745,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 282250740}
-        m_TargetAssemblyTypeName: VolumeSetting, Sound
-        m_MethodName: CloseVolumePanel
+        m_TargetAssemblyTypeName: UI.VolumePanelController, UI
+        m_MethodName: HidePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3132,7 +3143,7 @@ GameObject:
   - component: {fileID: 1924109893}
   - component: {fileID: 1924109892}
   m_Layer: 5
-  m_Name: SoundSetting
+  m_Name: SoundSettingButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3202,8 +3213,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 282250740}
-        m_TargetAssemblyTypeName: VolumeSetting, Sound
-        m_MethodName: OpenVolumePanel
+        m_TargetAssemblyTypeName: UI.VolumePanelController, UI
+        m_MethodName: TogglePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3461,6 +3472,61 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2125406551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2125406553}
+  - component: {fileID: 2125406552}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2125406552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125406551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9bc824bb5ddf35479668b3c071b7c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  mixer: {fileID: 24100000, guid: f4f0772ac4abbc447afdc72361e5ad1d, type: 2}
+  masterParam: MasterVolume
+  sfxParam: SFXVolume
+  musicParam: MusicVolume
+  sfxGroup: {fileID: -3128665838962295547, guid: f4f0772ac4abbc447afdc72361e5ad1d, type: 2}
+  musicGroup: {fileID: -7713963617464655539, guid: f4f0772ac4abbc447afdc72361e5ad1d, type: 2}
+  defaultMusic: {fileID: 8300000, guid: 65a651862abd2ae4784de736cfc999c9, type: 3}
+  musicFadeSeconds: 0.8
+  sfxPoolSize: 8
+  sfx3D: 0
+  sfxSpatialBlend: 1
+--- !u!4 &2125406553
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125406551}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 458.53882, y: 310.02725, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3468,3 +3534,4 @@ SceneRoots:
   - {fileID: 1352235321}
   - {fileID: 2052116586}
   - {fileID: 839876915}
+  - {fileID: 2125406553}

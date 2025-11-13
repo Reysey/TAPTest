@@ -82,9 +82,9 @@ namespace UI
             Instance = this;
             DontDestroyOnLoad(gameObject);
             
-            // BuildPools();
-            // LoadSavedVolumes();
-            // ApplyAllVolumes();
+            BuildPools();
+            LoadSavedVolumes();
+            ApplyAllVolumes();
         }
         
         // ----------------------------- Initialization ----------------------------
@@ -137,6 +137,9 @@ namespace UI
         public void PlayMusic(AudioClip clip, float fadeSeconds = -1f)
         {
             if (clip == null) return;
+
+            EnsureInitialized();
+            
             var current = _activeMusic;
             if (current.clip == clip && current.isPlaying) return;
 
@@ -163,6 +166,17 @@ namespace UI
 
             StopAllCoroutines();
             StartCoroutine(FadeOutStop(current, fade));
+        }
+        
+        // Add inside AudioManager (private section)
+        private void EnsureInitialized()
+        {
+            // If music/SFX sources weren’t built yet (rare race), build now
+            if (_musicA == null || _musicB == null || _sfxPool == null || _sfxPool.Count == 0)
+                BuildPools();
+
+            if (_activeMusic == null)
+                _activeMusic = _musicA;
         }
 
         // ----------------------------- Public API (SFX) --------------------------
