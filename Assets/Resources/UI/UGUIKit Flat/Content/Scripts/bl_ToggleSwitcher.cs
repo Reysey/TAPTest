@@ -74,7 +74,10 @@
             base.OnValidate();
             this.Set(this.m_IsOn, false);
             this.PlayEffect();
-            if ((PrefabUtility.GetPrefabType(this) != PrefabType.Prefab) && !Application.isPlaying)
+
+            // In Editor, only register scene instances (not prefab assets) for layout rebuild,
+            // and only when we are NOT in Play mode.
+            if (!Application.isPlaying && !PrefabUtility.IsPartOfPrefabAsset(this))
             {
                 CanvasUpdateRegistry.RegisterCanvasElementForLayoutRebuild(this);
             }
