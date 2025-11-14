@@ -66,7 +66,7 @@ namespace UI
             }
             else
             {
-                Debug.LogWarning("VolumePanelController: AudioManager.Instance is null. Volumes won’t be applied.");
+                // Debug.LogWarning("VolumePanelController: AudioManager.Instance is null. Volumes won’t be applied.");
             }
 
             // 4) Subscribe UI events
@@ -75,8 +75,8 @@ namespace UI
             if (musicSlider)  musicSlider.onValueChanged.AddListener(OnMusicChanged);
 
             // 5) Panel visibility (persisted > startHidden)
-            bool visible = PlayerPrefs.GetInt(KeyPanel, startHidden ? 0 : 1) == 1;
-            SetPanelVisible(visible);
+            // bool visible = PlayerPrefs.GetInt(KeyPanel, startHidden ? 0 : 1) == 1;
+            SetPanelVisible(!startHidden);
 
             // 6) Hook V key
             _toggleVolumeAction.performed += OnTogglePerformed;
