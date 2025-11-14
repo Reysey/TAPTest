@@ -19,7 +19,7 @@ namespace Game
 
         [Header("Hit Flash")]
         [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField] private Color hitColor = Color.paleVioletRed;
+        [SerializeField] private Color hitColor = Color.red;
         [SerializeField] private float hitFlashDuration = 0.15f;
         
         private Color _originalColor;
